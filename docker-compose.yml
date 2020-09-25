@@ -3,11 +3,14 @@ services:
     backend:
         build: ./backend
         expose:
-            - ${APP_BACKEND_PORT}
+            - ${BACKEND_PORT}
         environment:
-            APP_BACKEND_PORT: ${APP_BACKEND_PORT}
+            PORT: ${BACKEND_PORT}
+            APPID: ${APPID}
+            MAP_ENDPOINT: ${MAP_ENDPOINT}
+            TARGET_CITY: ${TARGET_CITY}
         ports:
-            - ${APP_BACKEND_PORT}:${APP_BACKEND_PORT}
+            - ${BACKEND_PORT}:${BACKEND_PORT}
         volumes:
             - ./backend/src:/usr/src/weatherapp/backend/src
         command: npm run dev
@@ -15,11 +18,13 @@ services:
     frontend:
         build: ./frontend
         expose:
-            - ${APP_FRONTEND_PORT}
+            - ${FRONTEND_PORT}
         environment:
-            APP_CLIENT_PORT: ${APP_FRONTEND_PORT}
+            HOST: ${FRONTEND_HOST}
+            PORT: ${FRONTEND_PORT}
+            ENDPOINT: ${ENDPOINT}
         ports:
-            - ${APP_FRONTEND_PORT}:${APP_FRONTEND_PORT}
+            - ${FRONTEND_PORT}:${FRONTEND_PORT}
         volumes:
             - ./frontend/src:/usr/src/weatherapp/frontend/src
         links:
