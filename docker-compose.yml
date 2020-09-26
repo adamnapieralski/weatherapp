@@ -22,7 +22,7 @@ services:
         environment:
             HOST: ${FRONTEND_HOST}
             PORT: ${FRONTEND_PORT}
-            ENDPOINT: ${ENDPOINT}
+            ENDPOINT: ${BACKEND_ENDPOINT}
         ports:
             - ${FRONTEND_PORT}:${FRONTEND_PORT}
         volumes:
