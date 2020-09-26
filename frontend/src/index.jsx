@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Moment from 'react-moment';
 
 const baseURL = process.env.ENDPOINT;
 
@@ -50,7 +51,14 @@ class Weather extends React.Component {
           <table>
             <tbody>
               <tr>
-                <td>{data.dt_txt}</td>
+                <td>
+                  <Moment format="DD/MM">{data.dt_txt}</Moment>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <Moment format="HH:mm">{data.dt_txt}</Moment>
+                </td>
               </tr>
               <tr>
                 <td>

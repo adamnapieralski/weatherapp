@@ -13,8 +13,10 @@
     "lint": "node_modules/.bin/eslint --ext .js --ext .jsx ."
   },
   "dependencies": {
+    "moment": "^2.29.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-moment": "^0.9.7"
   },
   "devDependencies": {
     "@babel/core": "^7.11.5",
