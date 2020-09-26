@@ -37,15 +37,30 @@ class Weather extends React.Component {
     this.state = {
       icon: '',
       forecastData: [],
+      locationCoords: {},
     };
   }
 
   async componentDidMount() {
-    const weather = await getWeatherFromApi();
-    this.setState({ icon: weather.icon.slice(0, -1) });
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.setState({
+          locationCoords: {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          },
+        }, this.setWeatherDataAsync);
+      });
+    } else {
+      // TODO handle geolocation not supported
+    }
+  }
 
+  async setWeatherDataAsync() {
+    const weather = await getWeatherFromApi();
     const forecast = await getForecastFromApi(forecastMaxResultsDay);
-    this.setState({ forecastData: forecast });
+
+    this.setState({ icon: weather.icon.slice(0, -1), forecastData: forecast });
   }
 
   renderForecastCol() {
