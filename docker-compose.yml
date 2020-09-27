@@ -9,6 +9,7 @@ services:
             APPID: ${APPID}
             MAP_ENDPOINT: ${MAP_ENDPOINT}
             DEFAULT_CITY: ${DEFAULT_CITY}
+            DEFAULT_COUNTRY: ${DEFAULT_COUNTRY}
         ports:
             - ${BACKEND_PORT}:${BACKEND_PORT}
         volumes:
