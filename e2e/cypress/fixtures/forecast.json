@@ -1,0 +1,92 @@
+[
+    [
+        {
+            "weather": [
+                {
+                    "id": 803,
+                    "main": "Clouds",
+                    "description": "broken clouds",
+                    "icon": "04n"
+                }
+            ],
+            "dt_txt": "2020-09-27 18:00:00"
+        },
+        {
+            "weather": [
+                {
+                    "id": 800,
+                    "main": "Clear",
+                    "description": "clear sky",
+                    "icon": "01n"
+                }
+            ],
+            "dt_txt": "2020-09-27 21:00:00"
+        },
+        {
+            "weather": [
+                {
+                    "id": 800,
+                    "main": "Clear",
+                    "description": "clear sky",
+                    "icon": "01n"
+                }
+            ],
+            "dt_txt": "2020-09-28 00:00:00"
+        },
+        {
+            "weather": [
+                {
+                    "id": 800,
+                    "main": "Clear",
+                    "description": "clear sky",
+                    "icon": "01n"
+                }
+            ],
+            "dt_txt": "2020-09-28 03:00:00"
+        },
+        {
+            "weather": [
+                {
+                    "id": 800,
+                    "main": "Clear",
+                    "description": "clear sky",
+                    "icon": "01d"
+                }
+            ],
+            "dt_txt": "2020-09-28 06:00:00"
+        },
+        {
+            "weather": [
+                {
+                    "id": 800,
+                    "main": "Clear",
+                    "description": "clear sky",
+                    "icon": "01d"
+                }
+            ],
+            "dt_txt": "2020-09-28 09:00:00"
+        },
+        {
+            "weather": [
+                {
+                    "id": 802,
+                    "main": "Clouds",
+                    "description": "scattered clouds",
+                    "icon": "03d"
+                }
+            ],
+            "dt_txt": "2020-09-28 12:00:00"
+        },
+        {
+            "weather": [
+                {
+                    "id": 803,
+                    "main": "Clouds",
+                    "description": "broken clouds",
+                    "icon": "04d"
+                }
+            ],
+            "dt_txt": "2020-09-28 15:00:00"
+        }
+    ]
+]

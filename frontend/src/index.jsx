@@ -136,13 +136,15 @@ class Weather extends React.Component {
     const { icon, city, country } = this.state;
 
     return (
-      <div className="icon">
-        { icon && <img src={`/img/${icon}.svg`} alt="Current weather icon" /> }
-        <div>
+      <div>
+        <div className="icon">
+          { icon && <img src={`/img/${icon}.svg`} alt="Current weather icon" /> }
+        </div>
+        <div className="location">
           {city}
           {country}
         </div>
-        <div>
+        <div className="forecast">
           <table>
             <tbody>
               <tr>

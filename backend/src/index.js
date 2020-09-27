@@ -7,7 +7,8 @@ const cors = require('kcors',);
 
 const appId = process.env.APPID || '38aef137bf77952448eb7348401e5306';
 const mapURI = process.env.MAP_ENDPOINT || 'http://api.openweathermap.org/data/2.5';
-const defaultCity = process.env.DEFAULT_CITY || 'Helsinki,fi';
+const defaultCity = process.env.DEFAULT_CITY || 'Helsinki';
+const defaultCountry = process.env.DEFAULT_COUNTRY || 'FI';
 
 const port = process.env.PORT || 9000;
 
@@ -65,7 +66,7 @@ const makeLocationParamsFromQuery = (query,) => {
   } else if (query.latitude && query.longitude) {
     params = { lat: query.latitude, lon: query.longitude, };
   } else {
-    params = { q: defaultCity, };
+    params = { q: `${defaultCity},${defaultCountry}`, };
   }
   return params;
 };
