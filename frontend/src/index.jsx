@@ -6,9 +6,10 @@ const baseURL = process.env.ENDPOINT;
 
 const forecastMaxResultsDay = 8;
 
-const getWeatherFromApi = async () => {
+const getWeatherFromApiByCityCountry = async (cityCountry) => {
   try {
-    const response = await fetch(`${baseURL}/weather`);
+    const params = new URLSearchParams(cityCountry);
+    const response = await fetch(`${baseURL}/weather?${params}`);
     return response.json();
   } catch (error) {
     // FIXME
@@ -18,9 +19,38 @@ const getWeatherFromApi = async () => {
   return {};
 };
 
-const getForecastFromApi = async (maxResults) => {
+const getWeatherFromApiByCoords = async (coords) => {
   try {
-    const response = await fetch(maxResults ? `${baseURL}/forecast?maxResults=${maxResults}` : `${baseURL}/forecast`);
+    const params = new URLSearchParams(coords);
+    const response = await fetch(`${baseURL}/weather?${params}`);
+    return response.json();
+  } catch (error) {
+    // FIXME
+    console.error(error);
+  }
+
+  return {};
+}
+
+const getForecastFromApiByCityCountry = async (cityCountry, maxResults) => {
+  try {
+    const params = new URLSearchParams(
+      Object.assign(maxResults ? { maxResults } : {}, { cityCountry }),
+    );
+    const response = await fetch(`${baseURL}/forecast?${params}`);
+    return response.json();
+  } catch (error) {
+    // FIXME
+    console.error(error);
+  }
+
+  return {};
+};
+
+const getForecastFromApiByCoords = async (coords, maxResults) => {
+  try {
+    const params = new URLSearchParams(Object.assign(maxResults ? { maxResults } : {}, coords));
+    const response = await fetch(`${baseURL}/forecast?${params}`);
     return response.json();
   } catch (error) {
     // FIXME
@@ -36,16 +66,43 @@ class Weather extends React.Component {
 
     this.state = {
       icon: '',
+      city: '',
+      country: '',
       forecastData: [],
+      locationCoords: {},
     };
   }
 
   async componentDidMount() {
-    const weather = await getWeatherFromApi();
-    this.setState({ icon: weather.icon.slice(0, -1) });
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.setState({
+          locationCoords: {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          },
+        }, this.setWeatherDataAsyncByCoords);
+      },
+      () => {
+        // to get data for defaultCity from env
+        this.setWeatherDataAsyncByCoords();
+      });
+    } else {
+      // TODO handle geolocation not supported
+    }
+  }
 
-    const forecast = await getForecastFromApi(forecastMaxResultsDay);
-    this.setState({ forecastData: forecast });
+  async setWeatherDataAsyncByCoords() {
+    const { locationCoords } = this.state;
+    const weather = await getWeatherFromApiByCoords(locationCoords);
+    const forecast = await getForecastFromApiByCoords(locationCoords, forecastMaxResultsDay);
+
+    this.setState({
+      icon: weather.icon.slice(0, -1),
+      city: weather.city,
+      country: weather.country,
+      forecastData: forecast,
+    });
   }
 
   renderForecastCol() {
@@ -76,11 +133,15 @@ class Weather extends React.Component {
   }
 
   render() {
-    const { icon } = this.state;
+    const { icon, city, country } = this.state;
 
     return (
       <div className="icon">
         { icon && <img src={`/img/${icon}.svg`} alt="Current weather icon" /> }
+        <div>
+          {city}
+          {country}
+        </div>
         <div>
           <table>
             <tbody>
