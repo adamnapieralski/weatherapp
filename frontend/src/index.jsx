@@ -134,6 +134,7 @@ class Weather extends React.Component {
 
   render() {
     const { icon, city, country } = this.state;
+    const locationText = `${city} [${country}]`;
 
     return (
       <div>
@@ -141,8 +142,7 @@ class Weather extends React.Component {
           { icon && <img src={`/img/${icon}.svg`} alt="Current weather icon" /> }
         </div>
         <div className="location">
-          {city}
-          {country}
+          {locationText}
         </div>
         <div className="forecast">
           <table>
