@@ -1,4 +1,6 @@
+/* eslint-disable no-unused-vars */
 const debug = require('debug',)('weathermap',);
+// TODO add env variable for debug switching
 
 const Koa = require('koa',);
 const router = require('koa-router',)();
@@ -21,7 +23,7 @@ const fetchWeather = async (params,) => {
   const endpoint = `${mapURI}/weather?${searchParams}&appid=${appId}&`;
   const response = await fetch(endpoint,);
 
-  debug('weather\nendpoint: %s\nresponse: %o', endpoint, response,);
+  // debug('weather\nendpoint: %s\nresponse: %o', endpoint, response,);
 
   return response ? response.json() : {};
 };
@@ -31,7 +33,7 @@ const fetchForecast = async (params,) => {
   const endpoint = `${mapURI}/forecast?${searchParams}&appid=${appId}&`;
   const response = await fetch(endpoint,);
 
-  debug('forecast\nendpoint: %s\nresponse: %o', endpoint, response,);
+  // debug('forecast\nendpoint: %s\nresponse: %o', endpoint, response,);
 
   return response ? response.json() : {};
 };
