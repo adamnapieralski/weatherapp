@@ -36,6 +36,8 @@ Application run with docker-compose is ready for development with hot reload fun
 * In backend/ run `npm start` or `npm run dev` (for nodemon start with hot reload)
 * In frontend/ run `npm start`
 
+When both back and front servers are started, visit `[address]:[port]` defined in .env. However, geolocation functionality requires the application to be accessed by `localhost:[port]`, so preferably visit: http://localhost:8000
+
 ## Testing
 Applications e2e and integration tests are contained in `e2e/` directory.
 
