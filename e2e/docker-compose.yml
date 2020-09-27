@@ -1,0 +1,49 @@
+version: "3"
+services:
+    backend:
+        build: ../backend
+        expose:
+            - ${BACKEND_PORT}
+        environment:
+            PORT: ${BACKEND_PORT}
+            APPID: ${APPID}
+            MAP_ENDPOINT: ${MAP_ENDPOINT}
+            DEFAULT_CITY: ${DEFAULT_CITY}
+            DEFAULT_COUNTRY: ${DEFAULT_COUNTRY}
+        ports:
+            - ${BACKEND_PORT}:${BACKEND_PORT}
+        volumes:
+            - ../backend/src:/usr/src/weatherapp/backend/src
+        command: npm run dev
+        # logging:
+        #     driver: none
+
+    frontend:
+        build: ../frontend
+        expose:
+            - ${FRONTEND_PORT}
+        environment:
+            HOST: ${FRONTEND_HOST}
+            PORT: ${FRONTEND_PORT}
+            ENDPOINT: http://backend:${BACKEND_PORT}/api
+        ports:
+            - ${FRONTEND_PORT}:${FRONTEND_PORT}
+        volumes:
+            - ../frontend/src:/usr/src/weatherapp/frontend/src
+        links:
+            - backend
+        command: npm start
+        # logging:
+        #     driver: none
+
+    cypress:
+        image: "cypress/included:5.2.0"
+        depends_on:
+            - frontend
+        environment:
+            CYPRESS_baseUrl: http://frontend:${FRONTEND_PORT}
+            CYPRESS_defaultCity: ${DEFAULT_CITY}
+            CYPRESS_defaultCountry: ${DEFAULT_COUNTRY}
+        working_dir: /e2e
+        volumes:
+            - ./:/e2e
