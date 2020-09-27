@@ -1,3 +1,5 @@
+<img align="left" src="./frontend/src/public/img/02.svg" title="ParkingApp" alt="Weatherapp" width="100" height="100">
+
 # Weatherapp
 
 Web application providing simplified preview of current and upcoming weather in user's location.
@@ -13,6 +15,7 @@ Web application providing simplified preview of current and upcoming weather in 
 `git clone https://github.com/adamnapieralski/weatherapp.git`
 * `cd weatherapp`
 ### With docker
+* set  environmental variables to desired values (in `.env` and `e2e/.env`)
 * Run in the root application directory
 ```
 docker-compose up
@@ -38,18 +41,22 @@ Applications e2e and integration tests are contained in `e2e/` directory.
 
 ### [Cypress](https://www.cypress.io/) automated tests
 #### With docker
-To automatically run cypress tests using docker, in e2e/ directory run:
+* To automatically run cypress tests using docker, in e2e/ directory run:
 ```
 docker-compose up --exit-code-from cypress
 ```
 This will run all cypress tests headlessly and view short report in console.
 
+(To log only cypress output, uncomment logging related lines in `e2e/docker-compose.yml`)
+
 (TODO: add custom reporter to generate pretty reports (e.g. allure))
 
 #### Without docker
-To install required testing packages run `npm install` in e2e/.
+* To install required testing packages run `npm install` in e2e/.
 
-Having app already running, you can run cypress headlessly in console with `npm run cy:run` or open testing GUI with `npm run cy:open`.
+* Having app already running, you can run cypress headlessly in console with `npm run cy:run` or open testing GUI with `npm run cy:open`.
+
+
 
 ### [Robot-framework](https://robotframework.org/) tests
 #### Installation
@@ -65,6 +72,7 @@ Run tests with
 ```
 robot robot-framework-tests
 ```
+(Current Robot Framework tests are not runnable.)
 (TODO: Docker container and compose handling running tests and stubbing backend server responses)
 
 ## Contributors
