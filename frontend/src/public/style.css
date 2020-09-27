@@ -10,6 +10,9 @@ body {
 }
 
 .icon {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   width: 30vw;
   height: 30vw;
 }
