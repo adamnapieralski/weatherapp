@@ -1,0 +1,10 @@
+[
+  {
+    "city": "Berlin",
+    "country": "DE",
+    "description": "light rain",
+    "icon": "10d",
+    "id": 500,
+    "main": "Rain"
+  }
+]
