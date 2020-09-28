@@ -1,0 +1,10 @@
+{
+    "request": {
+        "method": "GET",
+        "urlPatter": "/api/weather.*"
+    },
+    "response": {
+        "status": 200,
+        "bodyFileName": "weather.json"
+    }
+}

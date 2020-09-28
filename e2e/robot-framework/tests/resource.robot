@@ -7,11 +7,10 @@ Documentation     A resource file with reusable keywords and variables.
 Library           SeleniumLibrary
 
 *** Variables ***
-${HOMEPAGE_URL}   http://localhost:8000/
-${SERVER}         localhost:9000
+${HOMEPAGE_URL}   http://localhost:8000
+# consider using http://frontend:8000 when in parallel docker-compose service 
 ${DELAY}          0
 ${BROWSER}        Firefox
-${API URL}        http://${SERVER}/api
 
 *** Keywords ***
 Open Browser To Home Page

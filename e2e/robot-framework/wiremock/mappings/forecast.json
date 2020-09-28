@@ -1,0 +1,10 @@
+{
+    "request": {
+        "method": "GET",
+        "urlPatter": "/api/forecast.*"
+    },
+    "response": {
+        "status": 200,
+        "bodyFileName": "forecast.json"
+    }
+}
