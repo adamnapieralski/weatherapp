@@ -5,7 +5,7 @@
 Web application providing simplified preview of current and upcoming weather in user's location.
 
 ## Prerequisites
-* An [openweathermap](http://openweathermap.org/) API key.
+* An [openweathermap](http://openweathermap.org/) API key
 * Node.js
 * [Docker](https://docs.docker.com/get-docker/) & [docker compose](https://docs.docker.com/compose/)
 * Python3.6^ for [Robot Framework](https://robotframework.org/)
@@ -15,8 +15,8 @@ Web application providing simplified preview of current and upcoming weather in 
 `git clone https://github.com/adamnapieralski/weatherapp.git`
 * `cd weatherapp`
 ### With docker
-* set  environmental variables to desired values (in `.env` and `e2e/.env`)
-* Run in the root application directory
+* Set  environmental variables to desired values (in `.env` and `e2e/.env`)
+* Run in the root application directory:
 ```
 docker-compose up
 ```
@@ -36,14 +36,14 @@ Application run with docker-compose is ready for development with hot reload fun
 * In backend/ run `npm start` or `npm run dev` (for nodemon start with hot reload)
 * In frontend/ run `npm start`
 
-When both back and front servers are started, visit `[address]:[port]` defined in .env. However, geolocation functionality requires the application to be accessed by `localhost:[port]`, so preferably visit: http://localhost:8000
+When both back and front servers are started, visit `[address]:[port]` defined in .env. However, geolocation functionality requires the application run without SSL to be accessed by `localhost:[port]`, so preferably use and visit: http://localhost:8000.
 
 ## Testing
 Applications e2e and integration tests are contained in `e2e/` directory.
 
 ### [Cypress](https://www.cypress.io/) automated tests
 #### With docker
-* To automatically run cypress tests using docker, in e2e/ directory run:
+* To automatically run cypress tests using docker, in `e2e/` run:
 ```
 docker-compose up --exit-code-from cypress
 ```
@@ -54,19 +54,26 @@ This will run all cypress tests headlessly and view short report in console.
 (TODO: add custom reporter to generate pretty reports (e.g. allure))
 
 #### Without docker
-* To install required testing packages run `npm install` in e2e/.
+* To install required cypress testing packages run `npm install` in `e2e/`.
 
 * Having app already running, you can run cypress headlessly in console with `npm run cy:run` or open testing GUI with `npm run cy:open`.
 
 
-
 ### [Robot-framework](https://robotframework.org/) tests
-#### Installation
-In e2e/ directory run:
+#### With docker
+
+Robot framework tests can be run with docker-compose up in e2e/robot-framework. This way [wiremock] is utilized as backend API mock server, providing deterministic responses for tests.
+
+#### Without docker
+* In e2e/robot-framework directory run:
 ```
 pip install -r requirements.txt
 ```
 It is advisable to use dedicated python virtual environment - e.g. [virtualenv](https://virtualenv.pypa.io/en/latest/) or [conda](https://docs.conda.io/en/latest/).
+
+* Provide needed webdriver - e.g. with `webdrivermanager chrome firefox`
+
+* Start wiremock docker container (from `e2e/robot-framework/wiremock`) and frontend webpack server.
 
 #### Run
 
@@ -74,8 +81,17 @@ Run tests with
 ```
 robot robot-framework-tests
 ```
-(Current Robot Framework tests are not runnable.)
-(TODO: Docker container and compose handling running tests and stubbing backend server responses)
+
+(TODO [Current Robot Framework tests are just template and are not correctly runnable] - Write improved test cases and add keywords, handle env vars, fix docker-compose execution).
+
+## Functionalities
+* current weather displayed,
+    * TODO: add more detailed info: temp., wind, etc.,
+* geolocation based weather data (if access is denied - target location from env vars is used),
+    * TODO: do not ask for location permission before page load - bad UX,
+    * TODO: add possibility to input & select city next to toggle to use geolocation instead,
+* location (`city [country]` format) displayed,
+* forecast data for next 24 hrs (in 3 hrs intervals) with datetime displayed.
 
 ## Contributors
 * mrako ([Marko Klemetti](http://mrako.com/))

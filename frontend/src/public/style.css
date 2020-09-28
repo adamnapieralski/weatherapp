@@ -20,4 +20,19 @@ body {
 .location {
   text-align: center;
   font-size: large;
+  margin: 0 0 15px 0;
+}
+
+.forecast {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.forecast-table {
+  margin: 0 auto;
+}
+
+.forecast-icon-cell {
+  height: 3em
 }

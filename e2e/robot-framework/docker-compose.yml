@@ -1,0 +1,35 @@
+version: "3"
+services:
+    wiremock:
+        build: ./wiremock
+        ports:
+            - "8080:8080"
+        volumes:
+            - ./wiremock:/home/wiremock
+        
+    frontend:
+        build: ../../frontend
+        expose:
+            - 8000
+        environment:
+            HOST: "0.0.0.0"
+            PORT: 8000
+            ENDPOINT: http://wiremock:8080/api
+        ports:
+            - 8000:8000
+        volumes:
+            - ../../frontend/src:/usr/src/weatherapp/frontend/src
+        links:
+            - wiremock
+        command: npm start
+
+    robotframework:
+        build: .
+        volumes:
+            - ./tests:/usr/src/robot-framework/tests
+        depends_on:
+            - frontend
+        command: robot tests/
+        # TODO implement waiting for frontend server to start - e.g. bash script with curl
+        # currently infinite restarts
+        restart: on-failure

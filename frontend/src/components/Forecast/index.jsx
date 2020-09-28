@@ -73,7 +73,7 @@ class Forecast extends React.Component {
               </td>
             </tr>
             <tr>
-              <td>
+              <td className="forecast-icon-cell">
                 <img src={`/img/${data.weather[0].icon.slice(0, -1)}.svg`} alt={`Forecast icon at ${data.dt_txt}`} />
               </td>
             </tr>
@@ -86,7 +86,7 @@ class Forecast extends React.Component {
   render() {
     return (
       <div className="forecast">
-        <table>
+        <table className="forecast-table">
           <tbody>
             <tr>
               { this.renderForecastCol() }
