@@ -62,7 +62,7 @@ This will run all cypress tests headlessly and view short report in console.
 ### [Robot-framework](https://robotframework.org/) tests
 #### With docker
 
-Robot framework tests can be run with docker-compose up in e2e/robot-framework. This way [wiremock] is utilized as backend API mock server, providing deterministic responses for tests.
+Robot framework tests can be run with `docker-compose up` in e2e/robot-framework. This way [wiremock] is utilized as mock OpenWeatherMap API, providing deterministic responses data for tests.
 
 #### Without docker
 * In e2e/robot-framework directory run:
@@ -79,7 +79,7 @@ It is advisable to use dedicated python virtual environment - e.g. [virtualenv](
 
 Run tests with
 ```
-robot robot-framework-tests
+robot tests/
 ```
 
 (TODO [Current Robot Framework tests are just template and are not correctly runnable] - Write improved test cases and add keywords, handle env vars, fix docker-compose execution).
