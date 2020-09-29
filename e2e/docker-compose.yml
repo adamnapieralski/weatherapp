@@ -2,8 +2,6 @@ version: "3"
 services:
     backend:
         build: ../backend
-        expose:
-            - ${BACKEND_PORT}
         environment:
             PORT: ${BACKEND_PORT}
             APPID: ${APPID}
@@ -20,8 +18,6 @@ services:
 
     frontend:
         build: ../frontend
-        expose:
-            - ${FRONTEND_PORT}
         environment:
             HOST: ${FRONTEND_HOST}
             PORT: ${FRONTEND_PORT}
@@ -38,7 +34,7 @@ services:
 
     cypress:
         image: "cypress/included:5.2.0"
-        depends_on:
+        links:
             - frontend
         environment:
             CYPRESS_baseUrl: http://frontend:${FRONTEND_PORT}
