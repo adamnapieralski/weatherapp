@@ -1,7 +1,7 @@
 {
     "request": {
         "method": "GET",
-        "urlPatter": "/api/forecast.*"
+        "urlPatter": "/forecast.*"
     },
     "response": {
         "status": 200,
