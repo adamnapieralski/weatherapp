@@ -63,7 +63,7 @@ router.get('/api/forecast', async (ctx,) => {
 
 const makeLocationParamsFromQuery = (query,) => {
   let params;
-  if (query.city) {
+  if (query.cityCountry) {
     params = { q: query.cityCountry, };
   } else if (query.latitude && query.longitude) {
     params = { lat: query.latitude, lon: query.longitude, };
