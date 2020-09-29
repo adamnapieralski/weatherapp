@@ -1,7 +1,7 @@
 {
     "request": {
         "method": "GET",
-        "urlPatter": "/weather.*"
+        "urlPattern": "/weather.*"
     },
     "response": {
         "status": 200,
