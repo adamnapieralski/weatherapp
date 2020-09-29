@@ -27,7 +27,7 @@ services:
         build: ../../frontend
         environment:
             HOST: ${FRONTEND_HOST}
-            PORT: ${FRONTEND_HOST}
+            PORT: ${FRONTEND_PORT}
             ENDPOINT: ${BACKEND_ENDPOINT}
         ports:
             - ${FRONTEND_PORT}:${FRONTEND_PORT}
