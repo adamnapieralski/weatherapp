@@ -7,16 +7,30 @@ services:
         volumes:
             - ./wiremock:/home/wiremock
         
+    backend:
+        build: ../../backend
+        environment:
+            PORT: ${BACKEND_PORT}
+            APPID: ${APPID}
+            MAP_ENDPOINT: ${MAP_ENDPOINT}
+            DEFAULT_CITY: ${DEFAULT_CITY}
+            DEFAULT_COUNTRY: ${DEFAULT_COUNTRY}
+        ports:
+            - ${BACKEND_PORT}:${BACKEND_PORT}
+        volumes:
+            - ../../backend/src:/usr/src/weatherapp/backend/src
+        links:
+            - wiremock
+        command: npm run dev
+
     frontend:
         build: ../../frontend
-        expose:
-            - 8000
         environment:
-            HOST: "0.0.0.0"
-            PORT: 8000
-            ENDPOINT: http://wiremock:8080/api
+            HOST: ${FRONTEND_HOST}
+            PORT: ${FRONTEND_HOST}
+            ENDPOINT: ${BACKEND_ENDPOINT}
         ports:
-            - 8000:8000
+            - ${FRONTEND_PORT}:${FRONTEND_PORT}
         volumes:
             - ../../frontend/src:/usr/src/weatherapp/frontend/src
         links:
